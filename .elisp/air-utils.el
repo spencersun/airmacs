@@ -126,6 +126,25 @@
         standard-output
       (util-shell-function cmd "stdout" 't))))
 
+(defun util-random-string ()
+  (interactive)
+  (replace-regexp-in-string "\n" ""
+                            (shell-command-to-string "random-string -l --no-punctuation")))
+
+(defun util-insert-random-string ()
+  (interactive)
+  (insert (util-random-string)))
+
+(defun util-replace-random-string ()
+  (interactive)
+  (save-excursion
+    (let ((newstr (util-random-string)))
+      (replace-string (car kill-ring-yank-pointer) newstr))))
+
+(defun util-insert-random-number ()
+  (interactive)
+  (insert (number-to-string (random 10000))))
+
 (defun eval-fun()
   "Looks for the above defun, then evaluates the function"
   (interactive)
@@ -923,15 +942,19 @@ The characters copied are inserted in the buffer before point."
 (defun vc-root-or-current-dir ()
   "Get the vc root or the current directory"
   (interactive)
-  (let ((the-root (util-vc-root)))
+  (let ((the-root (util-vc-root))
+        (fn (buffer-file-name)))
     (message (format "root: %s" the-root))
     (if the-root
-      the-root
-      (file-name-directory (or load-file-name buffer-file-name)))))
+        (cond
+         ((string-match-p "/pure_tools/ci/ras/" fn) (concat the-root "ci/ras"))
+         ((string-match-p "/purity/pb/" fn) (concat the-root "pb"))
+         (t the-root))
+      (file-name-directory (or load-file-name fn)))))
 
 (defun strip-c-apostrophe (s) (replace-regexp-in-string "^C'" "" s))
 
-(defun findcode-on (my-findcode-command) 
+(defun findcode-on (my-findcode-command)
   "Delegate findcode to"
   (message (format "Findcode: %s" my-findcode-command))
   (let ((compilation-buffer-name-function
@@ -941,13 +964,13 @@ The characters copied are inserted in the buffer before point."
     (message (format "Default directory: %s" default-directory))
     (grep my-findcode-command)))
 
-(setq findcode-command "grep --mmap -Rin %s .")
+(setq findcode-command "findcode -d %s %s")
 (defun util-findcode (findcode-command)
   "Run findcode on your current repo, or default path, if defined"
   (interactive
    (list (read-string
-          (concat "Run findcode in " (vc-root-or-current-dir) " as: ")
-          (format findcode-command (current-keyword-or-quoted-active-region 'strip-c-apostrophe)))))
+          (concat "Run findcode as: ")
+          (format findcode-command (vc-root-or-current-dir) (current-keyword-or-quoted-active-region 'strip-c-apostrophe)))))
   (findcode-on findcode-command))
 
 (defun findgrep-on (my-findgrep-command) 
@@ -1136,3 +1159,9 @@ If the current file doesn't exist yet the buffer is saved to create it."
           (backward-char)
           (insert-then-indent "\n")))))
 
+(defun util-server-force-start ()
+  "server-force-delete; server-start"
+  (interactive)
+  (progn
+    (server-force-delete)
+    (server-start)))

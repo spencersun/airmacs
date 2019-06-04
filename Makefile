@@ -1,24 +1,57 @@
-
-install: $(patsubst .elisp/%,$(HOME)/.elisp/%,$(wildcard .elisp/*)) $(patsubst .emacs.d/snippets/%,$(HOME)/.emacs.d/snippets/%,$(wildcard .emacs.d/snippets/*)) external pkg-install 
+install: $(patsubst .elisp/%,$(HOME)/.elisp/%,$(wildcard .elisp/*)) $(patsubst .emacs.d/snippets/%,$(HOME)/.emacs.d/snippets/%,$(wildcard .emacs.d/snippets/*))
 	/bin/cp -i .emacs $(HOME)/.emacs
+
+all: external pkg-install install
 
 $(HOME)/.elisp:
 	-mkdir $(HOME)/.elisp
 
 $(HOME)/.elisp/%: .elisp/% $(HOME)/.elisp
-	-/bin/cp -rf $< $@ 
+	-/bin/cp -rf $< $@
 
 $(HOME)/.emacs.d/snippets/:
 	-mkdir -p $(HOME)/.emacs.d/snippets/
 
 $(HOME)/.emacs.d/snippets/%: .emacs.d/snippets/% $(HOME)/.emacs.d/snippets/
-	-/bin/cp -rf $< $@ 
+	-/bin/cp -rf $< $@
+
+PACKAGES=\
+	all-the-icons \
+	auto-complete \
+	auto-save-buffers-enhanced \
+	csharp-mode \
+	dockerfile-mode \
+	expand-region \
+	groovy-mode \
+	helm \
+	helm-git-grep \
+	helm-ls-git \
+	hide-lines \
+	js-import \
+	js2-mode \
+	js2-refactor \
+	js2-refactor \
+	json-mode \
+	less-css-mode \
+	load-dir \
+	markdown-mode \
+	multiple-cursors \
+	neotree \
+	nlinum \
+	org \
+	org-bullets \
+	python-mode \
+	requirejs-mode \
+	rjsx-mode \
+	tern \
+	tern-auto-complete \
+	typescript-mode \
+	web-mode
 
 # check package-install before you add to the external target
 pkg-install:
-	./emacs-pkg-install.sh js2-mode js2-refactor auto-complete tern tern-auto-complete load-dir nlinum python-mode hide-lines web-mode auto-save-buffers-enhanced helm helm-ls-git helm-git-grep js2-refactor multiple-cursors requirejs-mode json-mode markdown-mode less-css-mode expand-region magit typescript-mode csharp-mode js-import neotree all-the-icons org org-bullets dockerfile-mode
+	./emacs-pkg-install.sh $(PACKAGES)
 
 external:
 # non-github links
-	cd ~/.elisp; wget -Nq http://www.cb1.com/~john/computing/emacs/lisp/basics/load-directory.el 
 	cd ~/.elisp; wget -Nq http://www.emacswiki.org/emacs/download/highlight-beyond-fill-column.el

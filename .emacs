@@ -2,7 +2,6 @@
 
 ;; Are we running XEmacs or Emacs?
 (defvar running-xemacs (string-match "XEmacs\\|Lucid" emacs-version))
-(add-to-list 'load-path "~/.elisp")
 ;; package-initialize may fail under some versions of emacs.
 ;; Commenting it out appears to fix that in those cases.
 
@@ -11,6 +10,7 @@
          '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
+(add-to-list 'load-path "~/.elisp")
 
 (require 'cl)
 (require 'air-utils)
@@ -67,7 +67,7 @@
         "cperl-mode"))
 
 ;; Show trailing whitespace in normal buffers
-(setq-default show-trailing-whitespace nil)
+(setq-default show-trailing-whitespace t)
 
 (setq-default auto-save-directory "~/.autosaves/")
 
@@ -114,11 +114,14 @@
 (setq web-mode-comment-style 2)
 (setq standard-indent 2)
 (setq web-mode-indent-style 2)
-(setq-default indent-tabs-mode t)
 
 (setq mac-option-modifier 'super)
 (setq mac-command-modifier 'meta)
 (setq kill-whole-line t)
+
+(require 'rjsx-mode)
+(setq sgml-attribute-offset 0)
+(setq js-indent-level 2)
 
 (require 'yasnippet)
 
@@ -163,7 +166,8 @@
 (add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-mode))
 (add-to-list 'auto-mode-alist '("Makefile" . makefile-mode))
 (add-to-list 'auto-mode-alist '("\\..*\\(html\\|mustache\\)" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx" . rsjx-mode))
+(add-to-list 'auto-mode-alist '("/ras/web/src/.*\\.js\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.scss" . scss-mode))
 (add-to-list 'auto-mode-alist '("\\.less" . less-css-mode))
@@ -181,8 +185,7 @@
 (add-to-list 'auto-mode-alist '("\\.ts" . typescript-mode))
 (add-to-list 'auto-mode-alist '("*hggrep*" . compilation-mode))
 
-; don't iconify on C-z when running in X
-(when window-system (global-set-key "\C-z" 'util-zap-to-char))
+(global-set-key "\C-z" 'util-zap-to-char)
 
 ;; Mix kbd and old-style key bindings
 (define-prefix-command 'my-keymap)
@@ -348,6 +351,8 @@
 	    (split-window-horizontally)
 	    )))
 
+(setenv "PAGER" "cat")
+
 (global-set-key [f4] 'helm-git-grep-at-point)
 (global-set-key [(shift f4)] 'helm-imenu)
 
@@ -390,13 +395,16 @@
 (global-set-key [(super a) ?g ?g ] 'helm-git-grep)
 (global-set-key [(super a) ?g ?s ] '(lambda() (interactive) (compile (format "cd %s; git status" (vc-root-or-current-dir)))))
 (global-set-key [(super a) ?k ?o ] 'util-kill-other-buffers)
-(global-set-key [(super a) ?g ?s ] 'magit-status)
-(global-set-key [(super a) ?m ?s ] 'magit-diff-staged)
+; (global-set-key [(super a) ?g ?s ] 'magit-status)
+; (global-set-key [(super a) ?m ?s ] 'magit-diff-staged)
 (global-set-key [(super a) ?r ?d ] '(lambda() (interactive) (util-save-and-save-some-buffers) (vc-root-diff nil)))
 (global-set-key [(super a) ?p ?x] 'util-pretty-xml)
 (global-set-key [(super a) ?r ?f] 'util-revert-file)
 (global-set-key [(super a) ?r ?h] 'util-revert-hunk)
+(global-set-key [(super a) ?r ?n] 'util-insert-random-number)
+(global-set-key [(super a) ?r ?s] 'util-insert-random-string)
 (global-set-key [(super a) ?s ?a ] 'vc-annotate)
+(global-set-key [(super a) ?s ?s ] 'util-server-force-start)
 (global-set-key [(super a) ?s ?w ] '(lambda() (interactive) (split-window-horizontally) (other-window 1)))
 (global-set-key [(super a) ?t ?q ] 'util-toggle-quotes)
 (global-set-key [(super a) ?u ?b] 'util-update-buffers)
@@ -470,7 +478,6 @@
 (setq js2-mirror-mode nil)
 (setq-default js2-basic-offset 2)
 (setq-default js2-highlight-level 3)
-(setq-default indent-tabs-mode nil)
 (make-variable-buffer-local 'tab-width)
 (setq-default js2-show-parse-errors nil)
 (setq-default js2-strict-missing-semi-warning nil)
@@ -482,7 +489,7 @@
 
 (add-hook 'js2-mode-hook
           '(lambda ()
-             (tern-mode t)
+             ; (tern-mode t)
              (js2-imenu-extras-mode)
              (modify-syntax-entry ?\_ "w")
              (define-key
@@ -522,8 +529,14 @@
             (progn
               (message "java-mode")
               (setq c-basic-offset 2
-                    tab-width 2
-                    indent-tabs-mode t))))
+                    tab-width 2))))
+
+(add-hook 'groovy-mode-hook
+          '(lambda ()
+            (progn
+              (message "java-mode")
+              (setq c-basic-offset 2
+                    tab-width 2))))
 
 ;; css mode
 (add-hook 'css-mode-hook 'common-hook)
@@ -557,7 +570,7 @@
                 (yas-minor-mode -1)))
 (add-hook 'prog-mode-hook 'yas-minor-mode)
 (add-hook 'ess-mode-hook 'yas-minor-mode)
-(add-hook 'markdown-mode-hook 'yas-minor-mode)  
+(add-hook 'markdown-mode-hook 'yas-minor-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -566,17 +579,17 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (rjsx-mode magit-gerrit typescript-mode helm-projectile helm company-tern projectile helm-git-grep sudoku ido-ubiquitous csharp-mode groovy-mode js-import helm-make sx sos dockerfile-mode yaml-mode xml-rpc xkcd web-mode undo-tree tiny tidy tabbar scala-mode2 requirejs rbt python-mode osx-lib nyan-mode nvm nlinum mvn memento markdown-mode mark-multiple makey magit load-dir less-css-mode kv jsx-mode json-mode js3-mode js2-refactor js-doc js-comint jira jabber imenu+ igrep hide-lines helm-ls-git helm-gtags helm-git-files helm-git helm-dash helm-aws grunt git-rebase-mode git-commit-mode gist expand-region emojify editorconfig-core editorconfig debbugs counsel company-emoji buttercup breaktime bang auto-save-buffers-enhanced arduino-mode anything-git-files angular-snippets adaptive-wrap ac-emoji 2048-game)))
+    (rjsx-mode typescript-mode helm-projectile helm company-tern projectile helm-git-grep sudoku csharp-mode groovy-mode helm-make sx sos dockerfile-mode yaml-mode xml-rpc xkcd web-mode undo-tree tiny tidy tabbar scala-mode2 requirejs rbt python-mode osx-lib nyan-mode nvm nlinum mvn memento markdown-mode mark-multiple makey load-dir less-css-mode kv jsx-mode json-mode js3-mode js2-refactor js-doc js-comint jira jabber imenu+ igrep hide-lines helm-ls-git helm-gtags helm-git-files helm-git helm-dash helm-aws grunt git-rebase-mode git-commit-mode gist expand-region emojify editorconfig-core editorconfig debbugs counsel company-emoji buttercup breaktime bang auto-save-buffers-enhanced arduino-mode anything-git-files angular-snippets adaptive-wrap ac-emoji 2048-game)))
  '(web-mode-attr-indent-offset 2)
  '(web-mode-code-indent-offset 2)
  '(web-mode-css-indent-offset 2)
  '(web-mode-markup-indent-offset 2)
  '(web-mode-sql-indent-offset 2))
 
-(add-hook 'conf-javaprop-mode-hook 
+(add-hook 'conf-javaprop-mode-hook
           '(lambda () (conf-quote-normal nil)))
 
-(add-hook 'yaml-mode-hook 
+(add-hook 'yaml-mode-hook
           '(lambda () (conf-quote-normal nil)))
 
 (add-hook 'json-mode-hook
@@ -589,18 +602,16 @@
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
 
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-M-s") 'isearch-forward)
-(global-set-key (kbd "C-M-r") 'isearch-backward)
 (show-paren-mode 1)
 (put 'downcase-region 'disabled nil)
 
 (add-hook 'python-mode-hook
           (lambda ()
-            ((setq )etq indent-tabs-mode t)
             (setq tab-width 4)
-            (setq python-indent 4)))
+            (setq python-indent 4)
+            (setq py-closing-list-dedents-bos t)))
+
+;            (define-key python-mode-map (kbd "TAB") 'hippie-expand)
 
 (defun ask-before-closing ()
   "Ask whether or not to close, and then close if y was pressed"
@@ -618,35 +629,44 @@
 ;; (ido-mode 1)
 ;; (ido-everywhere 1)
 
-(require 'ido-completing-read+)
-(setq js-import-quote "'")
+;(require 'ido-completing-read+)
+;(setq js-import-quote "'")
 
-(defun modify-import (fn)
-  
-  (ido-ubiquitous-mode 1)
-  (funcall fn)
-  (ido-ubiquitous-mode 0)
-  (forward-line -1)
-  (let ((thisline (current-line)))
-    (message "import before: %s" thisline)
-    (setq thisline (replace-regexp-in-string "\\(\\.\\.\\/\\)*" "" thisline))
-    (setq thisline (replace-regexp-in-string "src\\/js\\/" "" thisline))
-    (message "import after: %s" thisline)
-    (kill-line)
-    (insert thisline)
-    )
-  )
-
-(defun my-js-import ()
-  (interactive)
-  (modify-import 'js-import))
-
-(global-set-key [(super a) ?j ?i] 'my-js-import)
-
-(defun my-js-import-dev ()
-  (interactive)
-  (modify-import 'js-import-dev))
-(global-set-key [(super a) ?j ?d] 'my-js-import-dev)
+;(defun modify-import (fn)
+;
+;  (ido-ubiquitous-mode 1)
+;  (funcall fn)
+;  (ido-ubiquitous-mode 0)
+;  (forward-line -1)
+;  (let ((thisline (current-line)))
+;    (message "import before: %s" thisline)
+;    (setq thisline (replace-regexp-in-string "\\(\\.\\.\\/\\)*" "" thisline))
+;    (setq thisline (replace-regexp-in-string "src\\/js\\/" "" thisline))
+;    (message "import after: %s" thisline)
+;    (kill-line)
+;    (insert thisline)
+;    )
+;  )
+;
+;(defun my-js-import ()
+;  (interactive)
+;  (modify-import 'js-import))
+;
+;(global-set-key [(super a) ?j ?i] 'my-js-import)
+;
+;(defun my-js-import-dev ()
+;  (interactive)
+;  (modify-import 'js-import-dev))
+;(global-set-key [(super a) ?j ?d] 'my-js-import-dev)
 
 (setq projectile-indexing-method 'native)
 (setq projectile-enable-caching t)
+
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode)) ;; .h files are c++
+(require 'cc-mode)
+(setq c-default-style "linux")
+
+(require 'whitespace)
+(setq whitespace-style '(face trailing empty lines-tail))
+(setq whitespace-line-column 100)
+(global-whitespace-mode 1)
