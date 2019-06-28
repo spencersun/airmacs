@@ -145,6 +145,10 @@
   (interactive)
   (insert (number-to-string (random 10000))))
 
+(defun util-insert-unix-timestamp ()
+  (interactive)
+  (insert (number-to-string (truncate (time-to-seconds (current-time))))))
+
 (defun eval-fun()
   "Looks for the above defun, then evaluates the function"
   (interactive)

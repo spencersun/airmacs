@@ -408,7 +408,7 @@
 (global-set-key [(super a) ?s ?w ] '(lambda() (interactive) (split-window-horizontally) (other-window 1)))
 (global-set-key [(super a) ?t ?q ] 'util-toggle-quotes)
 (global-set-key [(super a) ?u ?b] 'util-update-buffers)
-(global-set-key [(super a) ?u ?t] 'untabify)
+(global-set-key [(super a) ?u ?t] 'util-insert-unix-timestamp)
 (global-set-key [(super a) ?w ?a] 'airmacs-agnostic-warn)
 (global-set-key [(super e)] 'eval-region-verbose)
 (global-set-key [(super shift e)] '(lambda()  (interactive)
