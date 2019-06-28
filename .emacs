@@ -670,3 +670,10 @@
 (setq whitespace-style '(face trailing empty lines-tail))
 (setq whitespace-line-column 100)
 (global-whitespace-mode 1)
+
+(custom-set-faces
+ '(ediff-fine-diff-B ((t (:background "#226622"))))
+ '(ediff-odd-diff-A  ((t (:foreground "black"))))
+ '(ediff-even-diff-A ((t (:background "brightblack"))))
+ '(ediff-even-diff-B ((t (:background "brightblack"))))
+)
