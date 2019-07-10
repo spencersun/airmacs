@@ -35,6 +35,8 @@
         ("pra" "~/src/pure_tools/ci/pure_plugins/pure-resource-allocator/src/main/java/com/purestorage/pureresourceallocator/")
         ("web" "~/src/pure_tools/ci/ras/web/")
         ("wbh" "~/src/pure_tools/ci/ras/web/handlers/")
+
+        ("/lb" "~/src/pure_tools/ci/lb/")
         )
       )
 
