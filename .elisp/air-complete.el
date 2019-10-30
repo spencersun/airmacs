@@ -11,7 +11,7 @@
         ("var" "/var")
         ("/pb" "~/src/purity/pb/")
         ("ppy" "~/src/purity/pb/pb-py/")
-        ("bin" "~/src/purity/pb/bin/")
+        ; ("bin" "~/src/purity/pb/bin/")
         ("bld" "~/src/purity/pb/builders/")
         ("run" "~/src/purity/pb/builders/runtests/")
         ("api" "~/src/purity/pb/services/api_server/")
@@ -25,6 +25,7 @@
 
         ("too" "~/src/pure_tools/")
         ("/ci" "~/src/pure_tools/ci/")
+        ("bin" "~/src/pure_tools/ci/bin/")
         ("ras" "~/src/pure_tools/ci/ras/")
         ("cla" "~/src/pure_tools/ci/ras/claim_service/")
         ("clh" "~/src/pure_tools/ci/ras/claim_service/handlers/")
@@ -32,9 +33,11 @@
         ("grv" "~/src/pure_tools/ci/ras/groovy/")
         ("lib" "~/src/pure_tools/ci/ras/lib/")
         ("log" "~/src/pure_tools/ci/ras/logger/")
-        ("pra" "~/src/pure_tools/ci/pure_plugins/pure-resource-allocator/src/main/java/com/purestorage/pureresourceallocator/")
+        ("que" "~/src/pure_tools/ci/ras/queue_service/")
         ("web" "~/src/pure_tools/ci/ras/web/")
         ("wbh" "~/src/pure_tools/ci/ras/web/handlers/")
+
+        ("pra" "~/src/pure_tools/ci/pure_plugins/pure-resource-allocator/src/main/java/com/purestorage/pureresourceallocator/")
 
         ("/lb" "~/src/pure_tools/ci/lb/")
         )
