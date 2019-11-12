@@ -677,3 +677,6 @@
  '(ediff-even-diff-A ((t (:background "brightblack"))))
  '(ediff-even-diff-B ((t (:background "brightblack"))))
 )
+
+(global-set-key (kbd "C-x C-b") 'switch-to-buffer)
+(global-set-key [(super a) ?x ?b] 'electric-buffer-list)
