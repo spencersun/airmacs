@@ -46,7 +46,8 @@ PACKAGES=\
 	tern \
 	tern-auto-complete \
 	typescript-mode \
-	web-mode
+	web-mode \
+	yaml-mode
 
 # check package-install before you add to the external target
 pkg-install:
