@@ -129,7 +129,7 @@
 (defun util-random-string ()
   (interactive)
   (replace-regexp-in-string "\n" ""
-                            (shell-command-to-string "random-string -l --no-punctuation")))
+                            (shell-command-to-string "random-string")))
 
 (defun util-insert-random-string ()
   (interactive)
