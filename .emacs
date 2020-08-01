@@ -680,3 +680,11 @@
 
 (global-set-key (kbd "C-x C-b") 'switch-to-buffer)
 (global-set-key [(super a) ?x ?b] 'electric-buffer-list)
+
+(eval-after-load "vc-git"
+  '(defun vc-git-annotate-command (file buf &optional rev)
+     (let ((name (file-relative-name file)))
+           (vc-git-command buf 'async nil "blame" "--date=iso" "-C" rev "--" name))))
+
+; emacs 25+
+; (setq vc-git-annotate-switches '("-w"))
