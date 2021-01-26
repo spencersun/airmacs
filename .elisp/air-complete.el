@@ -25,6 +25,8 @@
 
         ("too" "~/src/pure_tools/")
         ("/ci" "~/src/pure_tools/ci/")
+        ("ans" "~/src/pure_tools/ci/ansible/")
+        ("rol" "~/src/pure_tools/ci/ansible/roles/")
         ("bin" "~/src/pure_tools/ci/bin/")
         ("ras" "~/src/pure_tools/ci/ras/")
         ("cla" "~/src/pure_tools/ci/ras/claim_service/")
