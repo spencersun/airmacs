@@ -28,6 +28,7 @@
         ("ans" "~/src/pure_tools/ci/ansible/")
         ("rol" "~/src/pure_tools/ci/ansible/roles/")
         ("bin" "~/src/pure_tools/ci/bin/")
+        ("cil" "~/src/pure_tools/ci/cimetrics_loader/")
         ("ras" "~/src/pure_tools/ci/ras/")
         ("cla" "~/src/pure_tools/ci/ras/claim_service/")
         ("clh" "~/src/pure_tools/ci/ras/claim_service/handlers/")
