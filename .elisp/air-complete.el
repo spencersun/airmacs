@@ -43,6 +43,9 @@
         ("pra" "~/src/pure_tools/ci/pure_plugins/pure-resource-allocator/src/main/java/com/purestorage/pureresourceallocator/")
 
         ("/lb" "~/src/pure_tools/ci/lb/")
+
+        ("jnk" "~/src/jenkins_tests/")
+        ("inf" "~/src/jenkins_tests/src/infra/")
         )
       )
 
