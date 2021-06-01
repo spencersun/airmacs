@@ -9,6 +9,7 @@
         ("roo" "/root")
         ("hom" "~/")
         ("var" "/var")
+
         ("/pb" "~/src/purity/pb/")
         ("ppy" "~/src/purity/pb/pb-py/")
         ; ("bin" "~/src/purity/pb/bin/")
@@ -19,22 +20,28 @@
         ("tes" "~/src/purity/pb/tests/")
 
         ("moc" "~/src/pure_tools/ci/mockingbird/")
+        ("bra" "~/src/pure_tools/ci/mockingbird/webapps/branchmapper/")
+        ("cmi" "~/src/pure_tools/ci/mockingbird/webapps/cimetrics/")
         ("ems" "~/src/pure_tools/ci/mockingbird/webapps/ems/")
 
         ("lab" "~/src/pure_tools/ci/labels/")
 
         ("too" "~/src/pure_tools/")
         ("/ci" "~/src/pure_tools/ci/")
+
         ("ans" "~/src/pure_tools/ci/ansible/")
         ("rol" "~/src/pure_tools/ci/ansible/roles/")
+
         ("bin" "~/src/pure_tools/ci/bin/")
+
         ("cil" "~/src/pure_tools/ci/cimetrics_loader/")
+
         ("ras" "~/src/pure_tools/ci/ras/")
         ("cla" "~/src/pure_tools/ci/ras/claim_service/")
         ("clh" "~/src/pure_tools/ci/ras/claim_service/handlers/")
         ("cli" "~/src/pure_tools/ci/ras/cli/")
         ("grv" "~/src/pure_tools/ci/ras/groovy/")
-        ("lib" "~/src/pure_tools/ci/ras/lib/")
+        ("rlb" "~/src/pure_tools/ci/ras/lib/")
         ("log" "~/src/pure_tools/ci/ras/logger/")
         ("que" "~/src/pure_tools/ci/ras/queue_service/")
         ("web" "~/src/pure_tools/ci/ras/web/")
@@ -46,6 +53,8 @@
 
         ("jnk" "~/src/jenkins_tests/")
         ("inf" "~/src/jenkins_tests/src/infra/")
+
+        ("lib" "~/src/pure_tools/lib/")
         )
       )
 
