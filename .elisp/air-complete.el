@@ -10,11 +10,13 @@
         ("hom" "~/")
         ("var" "/var")
 
+        ("jnk" "~/src/jenkins_tests/")
+        ("inf" "~/src/jenkins_tests/src/infra/")
+
         ("/pb" "~/src/purity/pb/")
         ("ppy" "~/src/purity/pb/pb-py/")
         ; ("bin" "~/src/purity/pb/bin/")
         ("bld" "~/src/purity/pb/builders/")
-        ("run" "~/src/purity/pb/builders/runtests/")
         ("api" "~/src/purity/pb/services/api_server/")
         ("han" "~/src/purity/pb/services/api_server/handlers/")
         ("tes" "~/src/purity/pb/tests/")
@@ -36,6 +38,12 @@
 
         ("cil" "~/src/pure_tools/ci/cimetrics_loader/")
 
+        ("/lb" "~/src/pure_tools/ci/lb/")
+
+        ("lib" "~/src/pure_tools/lib/")
+
+        ("pra" "~/src/pure_tools/ci/pure_plugins/pure-resource-allocator/src/main/java/com/purestorage/pureresourceallocator/")
+
         ("ras" "~/src/pure_tools/ci/ras/")
         ("cla" "~/src/pure_tools/ci/ras/claim_service/")
         ("clh" "~/src/pure_tools/ci/ras/claim_service/handlers/")
@@ -47,14 +55,7 @@
         ("web" "~/src/pure_tools/ci/ras/web/")
         ("wbh" "~/src/pure_tools/ci/ras/web/handlers/")
 
-        ("pra" "~/src/pure_tools/ci/pure_plugins/pure-resource-allocator/src/main/java/com/purestorage/pureresourceallocator/")
-
-        ("/lb" "~/src/pure_tools/ci/lb/")
-
-        ("jnk" "~/src/jenkins_tests/")
-        ("inf" "~/src/jenkins_tests/src/infra/")
-
-        ("lib" "~/src/pure_tools/lib/")
+        ("run" "~/src/pure_tools/ci/runtests/")
         )
       )
 
