@@ -18,7 +18,7 @@
         ; ("bin" "~/src/purity/pb/bin/")
         ("bld" "~/src/purity/pb/builders/")
         ("api" "~/src/purity/pb/services/api_server/")
-        ("han" "~/src/purity/pb/services/api_server/handlers/")
+        ; ("han" "~/src/purity/pb/services/api_server/handlers/")
         ("tes" "~/src/purity/pb/tests/")
 
         ("moc" "~/src/pure_tools/ci/mockingbird/")
@@ -53,6 +53,7 @@
         ("log" "~/src/pure_tools/ci/ras/logger/")
         ("que" "~/src/pure_tools/ci/ras/queue_service/")
         ("web" "~/src/pure_tools/ci/ras/web/")
+        ("han" "~/src/pure_tools/ci/ras/web/handlers/")
         ("wbh" "~/src/pure_tools/ci/ras/web/handlers/")
 
         ("run" "~/src/pure_tools/ci/runtests/")
