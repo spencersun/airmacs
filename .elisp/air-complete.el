@@ -13,6 +13,8 @@
         ("jnk" "~/src/jenkins_tests/")
         ("inf" "~/src/jenkins_tests/src/infra/")
 
+        ("pup" "~/src/puppet/")
+
         ("/pb" "~/src/purity/pb/")
         ("ppy" "~/src/purity/pb/pb-py/")
         ; ("bin" "~/src/purity/pb/bin/")
