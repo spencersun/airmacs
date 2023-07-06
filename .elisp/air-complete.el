@@ -40,6 +40,8 @@
 
         ("cil" "~/src/pure_tools/ci/cimetrics_loader/")
 
+        ("jqs" "~/src/pure_tools/ci/jqs/")
+
         ("/lb" "~/src/pure_tools/ci/lb/")
 
         ("lib" "~/src/pure_tools/lib/")
