@@ -107,26 +107,26 @@
 (blink-cursor-mode -1)
 (setq blink-matching-delay 0.1)
 
-(require 'js2-mode)
-(setq js2-mirror-mode t)
+;; (require 'js2-mode)
+;; (setq js2-mirror-mode t)
 
-(require 'web-mode)
-(setq web-mode-comment-style 2)
-(setq standard-indent 2)
-(setq web-mode-indent-style 2)
+;; (require 'web-mode)
+;; (setq web-mode-comment-style 2)
+;; (setq standard-indent 2)
+;; (setq web-mode-indent-style 2)
 
 (setq mac-option-modifier 'super)
 (setq mac-command-modifier 'meta)
 (setq kill-whole-line t)
 
-(require 'rjsx-mode)
-(setq sgml-attribute-offset 0)
-(setq js-indent-level 2)
+;; (require 'rjsx-mode)
+;; (setq sgml-attribute-offset 0)
+;; (setq js-indent-level 2)
 
-(require 'yasnippet)
+;; (require 'yasnippet)
 
-(yas/initialize)
-(yas/global-mode 1)
+;; (yas/initialize)
+;; (yas/global-mode 1)
 
 ;; Tab completion
 (setq hippie-expand-try-functions-list (list
