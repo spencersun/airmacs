@@ -323,11 +323,11 @@
 
 ;;
 ;; anything config to locate
-(require 'helm-config)
+;(require 'helm-config)
 
 ;;
 ;; find files in git project
-(require 'helm-ls-git)
+;(require 'helm-ls-git)
 (require 'expand-region)
 (require 'js2-refactor)
 (require 'multiple-cursors)
@@ -337,9 +337,9 @@
   (eval-region (region-beginning) (region-end)) (deactivate-mark) 
   (message "Region Eval'd"))
 
-(defun git-grep-word-or-region ()
-  (interactive)
-  (helm-git-grep-1 (util-region-or-word)))
+;(defun git-grep-word-or-region ()
+;  (interactive)
+;  (helm-git-grep-1 (util-region-or-word)))
 
 (defun split-window-4()
  "Split window into 4 sub-window"
@@ -353,16 +353,16 @@
 
 (setenv "PAGER" "cat")
 
-(global-set-key [f4] 'helm-git-grep-at-point)
-(global-set-key [(shift f4)] 'helm-imenu)
+;(global-set-key [f4] 'helm-git-grep-at-point)
+;(global-set-key [(shift f4)] 'helm-imenu)
 
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 (global-set-key (kbd "C-=") 'er/expand-region)
-(global-set-key (kbd "C-c C-l") 'helm-ls-git-ls)
-(global-set-key (kbd "C-c C-n") 'helm-projectile)
+;(global-set-key (kbd "C-c C-l") 'helm-ls-git-ls)
+;(global-set-key (kbd "C-c C-n") 'helm-projectile)
 (global-set-key (kbd "C-x 4") 'split-window-4)
 (global-set-key "\C-a" 'util-beginning-or-toindent)
 (global-set-key "\C-e" 'util-ending-or-nextline-end)
@@ -392,7 +392,7 @@
 (global-set-key [(super a) ?e ?l ] 'eightyify-list)
 (global-set-key [(super a) ?f ?d ] 'vc-diff)
 (global-set-key [(super a) ?f ?g ] 'util-findgrep)
-(global-set-key [(super a) ?g ?g ] 'helm-git-grep)
+;(global-set-key [(super a) ?g ?g ] 'helm-git-grep)
 (global-set-key [(super a) ?g ?s ] '(lambda() (interactive) (compile (format "cd %s; git status" (vc-root-or-current-dir)))))
 (global-set-key [(super a) ?k ?o ] 'util-kill-other-buffers)
 ; (global-set-key [(super a) ?g ?s ] 'magit-status)
@@ -579,7 +579,8 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (rjsx-mode typescript-mode helm-projectile helm company-tern projectile helm-git-grep sudoku csharp-mode groovy-mode helm-make sx sos dockerfile-mode yaml-mode xml-rpc xkcd web-mode undo-tree tiny tidy tabbar scala-mode2 requirejs rbt python-mode osx-lib nyan-mode nvm nlinum mvn memento markdown-mode mark-multiple makey load-dir less-css-mode kv jsx-mode json-mode js3-mode js2-refactor js-doc js-comint jira jabber imenu+ igrep hide-lines helm-ls-git helm-gtags helm-git-files helm-git helm-dash helm-aws grunt git-rebase-mode git-commit-mode gist expand-region emojify editorconfig-core editorconfig debbugs counsel company-emoji buttercup breaktime bang auto-save-buffers-enhanced arduino-mode anything-git-files angular-snippets adaptive-wrap ac-emoji 2048-game)))
+    ;(rjsx-mode typescript-mode helm-projectile helm company-tern projectile helm-git-grep sudoku csharp-mode groovy-mode helm-make sx sos dockerfile-mode yaml-mode xml-rpc xkcd web-mode undo-tree tiny tidy tabbar scala-mode2 requirejs rbt python-mode osx-lib nyan-mode nvm nlinum mvn memento markdown-mode mark-multiple makey load-dir less-css-mode kv jsx-mode json-mode js3-mode js2-refactor js-doc js-comint jira jabber imenu+ igrep hide-lines helm-ls-git helm-gtags helm-git-files helm-git helm-dash helm-aws grunt git-rebase-mode git-commit-mode gist expand-region emojify editorconfig-core editorconfig debbugs counsel company-emoji buttercup breaktime bang auto-save-buffers-enhanced arduino-mode anything-git-files angular-snippets adaptive-wrap ac-emoji 2048-game)))
+    (rjsx-mode typescript-mode company-tern projectile sudoku csharp-mode groovy-mode sx sos dockerfile-mode yaml-mode xml-rpc xkcd web-mode undo-tree tiny tidy tabbar scala-mode2 requirejs rbt python-mode osx-lib nyan-mode nvm nlinum mvn memento markdown-mode mark-multiple makey load-dir less-css-mode kv jsx-mode json-mode js3-mode js2-refactor js-doc js-comint jira jabber imenu+ igrep hide-lines grunt git-rebase-mode git-commit-mode gist expand-region emojify editorconfig-core editorconfig debbugs counsel company-emoji buttercup breaktime bang auto-save-buffers-enhanced arduino-mode anything-git-files angular-snippets adaptive-wrap ac-emoji 2048-game)))
  '(web-mode-attr-indent-offset 2)
  '(web-mode-code-indent-offset 2)
  '(web-mode-css-indent-offset 2)

@@ -23,9 +23,6 @@ PACKAGES=\
 	dockerfile-mode \
 	expand-region \
 	groovy-mode \
-	helm \
-	helm-git-grep \
-	helm-ls-git \
 	hide-lines \
 	js-import \
 	js2-mode \
