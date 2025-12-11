@@ -297,13 +297,14 @@
  '(trailing-whitespace ((((class color) (background dark)) (:background "grey30")))))
 
 
-;; setdefault window size
-(setq default-frame-alist (append (list
-  '(width . 95) '(height . 57)
-  '(vertical-scroll-bars . right)
-  '(font . "-misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1"))
-  default-frame-alist))
-
+;; set appearance
+(setq initial-frame-alist (list
+  '(width . 95) '(height . 40)
+  '(top . 50) '(left . 50)
+))
+(set-frame-font "Menlo 18" nil t)
+;; bring to foreground
+(x-focus-frame nil)
 
 (defun comment-line (comment_fn)
   (interactive)
