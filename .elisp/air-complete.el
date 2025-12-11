@@ -10,6 +10,15 @@
         ("hom" "~/")
         ("var" "/var")
         ("log" "/var/log")
+
+        ("src" "~/src/")
+
+        ("inf" "~/src/infra/")
+
+        ("ans" "~/src/infra/ansible/")
+        ("rol" "~/src/infra/ansible/roles/")
+
+        ("/tf" "~/src/infra/tf/")
         )
       )
 
