@@ -301,9 +301,10 @@
 
 ;; setdefault window size
 (setq default-frame-alist (append (list
-  '(width . 95) '(height . 57)
+  '(width . 95) '(height . 45)
   '(vertical-scroll-bars . right)
-  '(font . "-misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1"))
+  ;'(font . "-misc-fixed-medium-r-normal--24-200-75-75-c-100-iso8859-1"))
+  '(font . "-PfEd-DejaVu Sans Mono-normal-normal-normal-*-23-*-*-*-m-0-iso10646-1"))
   default-frame-alist))
 
 
