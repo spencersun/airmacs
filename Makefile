@@ -1,3 +1,6 @@
+#WGET=wget -Nq
+WGET=curl -Rs
+
 install: $(patsubst .elisp/%,$(HOME)/.elisp/%,$(wildcard .elisp/*)) $(patsubst .emacs.d/snippets/%,$(HOME)/.emacs.d/snippets/%,$(wildcard .emacs.d/snippets/*))
 	/bin/cp -i .emacs $(HOME)/.emacs
 
@@ -52,4 +55,4 @@ pkg-install:
 
 external:
 # non-github links
-	cd ~/.elisp; wget -Nq http://www.emacswiki.org/emacs/download/highlight-beyond-fill-column.el
+	cd ~/.elisp; $(WGET) http://www.emacswiki.org/emacs/download/highlight-beyond-fill-column.el
