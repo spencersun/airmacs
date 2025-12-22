@@ -4,12 +4,14 @@
 
 (setq air-dir-completions
       '(
-        ("usr" "/usr")
-        ("etc" "/etc")
-        ("roo" "/root")
+        ("usr" "/usr/")
+        ("etc" "/etc/")
+        ("roo" "/root/")
         ("hom" "~/")
-        ("var" "/var")
-        ("log" "/var/log")
+        ("var" "/var/")
+        ("log" "/var/log/")
+
+        ("src" "~/src/")
         )
       )
 
