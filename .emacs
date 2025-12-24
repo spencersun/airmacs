@@ -363,7 +363,6 @@
 (global-set-key (kbd "C-=") 'er/expand-region)
 ;(global-set-key (kbd "C-c C-l") 'helm-ls-git-ls)
 ;(global-set-key (kbd "C-c C-n") 'helm-projectile)
-(global-set-key (kbd "C-x 4") 'split-window-4)
 (global-set-key "\C-a" 'util-beginning-or-toindent)
 (global-set-key "\C-e" 'util-ending-or-nextline-end)
 (global-set-key "\C-k" 'util-kill-line-or-region)
@@ -679,7 +678,7 @@
  '(ediff-even-diff-B ((t (:background "brightblack"))))
 )
 
-(global-set-key (kbd "C-x C-b") 'switch-to-buffer)
+(global-set-key (kbd "C-x C-b") 'buffer-menu)
 (global-set-key [(super a) ?x ?b] 'electric-buffer-list)
 
 (eval-after-load "vc-git"
