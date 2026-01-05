@@ -1169,3 +1169,60 @@ If the current file doesn't exist yet the buffer is saved to create it."
   (progn
     (server-force-delete)
     (server-start)))
+
+(defun delete-new-trailing-whitespace ()
+  "Delete trailing whitespace from added lines shown in the *vc-diff* buffer.
+Parses the diff output to find added lines and removes trailing whitespace
+from those lines in their original buffers. Saves modified buffers and
+recomputes the diff when done."
+  (interactive)
+  (let ((diff-buffer (get-buffer "*vc-diff*")))
+    (unless diff-buffer
+      (error "No *vc-diff* buffer found. Run vc-diff first"))
+    (let (modified-buffers lines-cleaned)
+      (setq modified-buffers '())
+      (setq lines-cleaned 0)
+      (with-current-buffer diff-buffer
+        (save-excursion
+          (goto-char (point-min))
+          (let (current-file current-line)
+            (while (not (eobp))
+              (let ((line (buffer-substring (line-beginning-position) (line-end-position))))
+                (cond
+                 ;; Match diff file header: +++ b/path/to/file or +++ path/to/file
+                 ((string-match "^\\+\\+\\+ \\(?:[ab]/\\)?\\(.+\\)$" line)
+                  (setq current-file (match-string 1 line)))
+                 ;; Match hunk header: @@ -old,count +new,count @@
+                 ((string-match "^@@ -[0-9,]+ \\+\\([0-9]+\\)" line)
+                  (setq current-line (string-to-number (match-string 1 line))))
+                 ;; Match added line (starts with single +, not +++ header)
+                 ((and current-file current-line
+                       (string-match "^\\+\\([^+]\\|$\\)" line))
+                  ;; Check if line has trailing whitespace
+                  (when (string-match "[[:space:]]$" line)
+                    (let ((file-buffer (find-file-noselect current-file)))
+                      (when file-buffer
+                        (with-current-buffer file-buffer
+                          (save-excursion
+                            (goto-char (point-min))
+                            (forward-line (1- current-line))
+                            (end-of-line)
+                            (delete-horizontal-space)))
+                        (add-to-list 'modified-buffers file-buffer)
+                        (setq lines-cleaned (1+ lines-cleaned)))))
+                  (setq current-line (1+ current-line)))
+                 ;; Context line (starts with space) - increment line number
+                 ((string-match "^ " line)
+                  (when current-line
+                    (setq current-line (1+ current-line))))
+                 ;; Removed line (starts with -) - don't increment line number
+                 ))
+              (forward-line 1)))))
+      ;; Save all modified buffers
+      (dolist (buf modified-buffers)
+        (with-current-buffer buf
+          (save-buffer)))
+      ;; Recompute the diff
+      (when (> lines-cleaned 0)
+        (vc-root-diff nil))
+      (message "Cleaned %d lines in %d files" lines-cleaned (length modified-buffers)))))
