@@ -386,6 +386,7 @@
 (global-set-key [(super a) ?c ?r ] 'vc-resolve-conflicts)
 (global-set-key [(super a) ?d ?f ] 'delete-this-buffer-and-file)
 (global-set-key [(super a) ?d ?o ] 'util-delete-other-buffers)
+(global-set-key [(super a) ?d ?w ] 'delete-new-trailing-whitespace)
 (global-set-key [(super a) ?e ?l ] 'eightyify-list)
 (global-set-key [(super a) ?f ?d ] 'vc-diff)
 (global-set-key [(super a) ?f ?g ] 'util-findgrep)
