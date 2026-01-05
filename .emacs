@@ -115,8 +115,6 @@
 (setq standard-indent 2)
 (setq web-mode-indent-style 2)
 
-(setq mac-option-modifier 'super)
-(setq mac-command-modifier 'meta)
 (setq kill-whole-line t)
 
 (require 'rjsx-mode)
